@@ -3,6 +3,18 @@ from flight_data import FlightData
 from pprint import pprint
 import os
 
+# Constants - can be modified to change search parameters
+
+ADULTS = 2
+NIGHTS_IN_DESTINATION_MIN = 7
+NIGHTS_IN_DESTINATION_MAX = 28
+FLIGHT_TYPE = "round"
+MAX_STOPOVERS = 0
+ONLY_WORKING_DAYS = False
+ONLY_WEEKENDS = False
+
+# Tequila constants
+
 TEQUILA_ENDPOINT = "https://tequila-api.kiwi.com"
 TEQUILA_API_KEY = os.environ["TEQUILA_API_KEY"]
 
@@ -14,19 +26,19 @@ class FlightSearch:
     def check_flights(self, origin_city_code, destination_city_code, from_time, to_time):
         headers = {"apikey": TEQUILA_API_KEY}
         query = {
-            "adults": 2,
+            "adults": ADULTS,
             "fly_from": origin_city_code,
             "fly_to": destination_city_code,
             "date_from": from_time.strftime("%d/%m/%Y"),
             "date_to": to_time.strftime("%d/%m/%Y"),
-            "nights_in_dst_from": 7,
-            "nights_in_dst_to": 28,
-            "flight_type": "round",
+            "nights_in_dst_from": NIGHTS_IN_DESTINATION_MIN,
+            "nights_in_dst_to": NIGHTS_IN_DESTINATION_MAX,
+            "flight_type": FLIGHT_TYPE,
             "one_for_city": 1,
-            "max_stopovers": 0,
+            "max_stopovers": MAX_STOPOVERS,
             "curr": "USD",
-            "only_working_days": False,
-            "only_weekends": False
+            "only_working_days": ONLY_WORKING_DAYS,
+            "only_weekends": ONLY_WEEKENDS
         }
 
         response = requests.get(
@@ -51,7 +63,7 @@ class FlightSearch:
             # Aiming to find a flight with the smallest number of stopovers, the request is run again with incrementing
             # stopover values until something is found
 
-            for stopover in range(1, 4):
+            for stopover in range(1, 12):
                 try:
                     query["max_stopovers"] = stopover
                     response = requests.get(
