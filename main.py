@@ -61,7 +61,7 @@ for destination_code in destinations:
 
         message = f"Low price alert! Only ${flight.price} to fly from {flight.origin_city}-{flight.origin_airport} to" \
                   f" {flight.destination_city}-{flight.destination_airport}, from {flight.out_date} to" \
-                  f" {flight.return_date}."
+                  f" {flight.return_date}. \n \nLink: {flight.deep_link}"
 
         # If the flight contains any stopovers, an additional line is added to the message
 
