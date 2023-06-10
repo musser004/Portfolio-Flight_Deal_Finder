@@ -47,4 +47,4 @@ Then add environmental variables for "TEQUILA_ENDPOINT" and "TEQUILA_API_KEY"
 
 7.) Adjust the "ORIGIN_CITY_IATA" constant in main.py to be whatever airport IATA code that you want to fly out from
 
-8.) Run the program. If everything is set up properly, you should be getting pretty printed terminal readouts, along with 
+8.) Run the program. If everything is set up properly, you should be getting pretty printed terminal readouts, along with text and email messages sent. Messages should include price, origin city/destination city, dates, and a link to the deal
