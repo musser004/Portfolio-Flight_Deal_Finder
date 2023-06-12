@@ -5,7 +5,7 @@ from notification_manager import NotificationManager
 
 # Constants
 
-ORIGIN_CITY_IATA = "AVL"
+ORIGIN_CITY_IATA = "MDT"
 
 # Module classes are called
 
@@ -27,8 +27,13 @@ destinations = {data["iataCode"]: {
 
 # Datetime setup for tomorrow and 6 month from today dates (search parameters for finding flights)
 
-tomorrow = datetime.now() + timedelta(days=1)
-six_month_from_today = datetime.now() + timedelta(days=182)
+start = datetime.now() + timedelta(days=1)
+end = datetime.now() + timedelta(days=182)
+
+# Manual DEPARTURE date controls (set the start/end range of days for departure flight)
+
+# start = datetime(2023, 7, 28)
+# end = datetime(2023, 7, 29)
 
 # Main loop. Goes through the full list of destination iata codes and checks for applicable flights
 
@@ -36,8 +41,8 @@ for destination_code in destinations:
     flight = flight_search.check_flights(
         ORIGIN_CITY_IATA,
         destination_code,
-        from_time=tomorrow,
-        to_time=six_month_from_today
+        from_time=start,
+        to_time=end
     )
 
     # Ignore and continue the loop if None is returned
@@ -66,7 +71,7 @@ for destination_code in destinations:
         # If the flight contains any stopovers, an additional line is added to the message
 
         if flight.stop_overs > 0:
-            message += f"\nFlight has {flight.stop_overs} stop over, via {flight.via_city}."
+            message += f"\n \nFlight has {flight.stop_overs} stop over, via {flight.via_city}."
 
         notification_manager.send_emails(emails, message)
 

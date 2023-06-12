@@ -5,9 +5,9 @@ import os
 
 # Constants - can be modified to change search parameters
 
-ADULTS = 2
-NIGHTS_IN_DESTINATION_MIN = 7
-NIGHTS_IN_DESTINATION_MAX = 28
+ADULTS = 1
+NIGHTS_IN_DESTINATION_MIN = 6
+NIGHTS_IN_DESTINATION_MAX = 8
 FLIGHT_TYPE = "round"
 MAX_STOPOVERS = 0
 ONLY_WORKING_DAYS = False
