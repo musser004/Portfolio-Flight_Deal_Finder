@@ -45,6 +45,6 @@ Then add environmental variables for "TEQUILA_ENDPOINT" and "TEQUILA_API_KEY"
 
 6.) Adjust the constants at the top of flight_search.py as desired. These will modify the search parameters
 
-7.) Adjust the "ORIGIN_CITY_IATA" constant in main.py to be whatever airport IATA code that you want to fly out from
+7.) Adjust the "ORIGIN_CITY_IATA" constant in main.py to be whatever airport IATA code that you want to fly out from. You can also comment out the current "start" and "end" variables, then uncomment the manual date controls below that to select what dates you'd like to use as the start/end range for DEPARTURE flight dates in the search
 
 8.) Run the program. If everything is set up properly, you should be getting pretty printed terminal readouts, along with text and email messages sent. Messages should include price, origin city/destination city, dates, and a link to the deal
